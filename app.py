@@ -11,13 +11,10 @@ def run():
     st.text("")
     userinput = st.text_input('Enter text below, then click the Predict button.', placeholder='Input text HERE')
     st.text("")
-    predicted_sentiment = ""
-    if st.button("Predict"):
+    
+    if st.button("Predict") and userinput:
         predicted_sentiment = model.predict(pd.Series([userinput]))[0]
-        if predicted_sentiment == 1:
-            output = 'positive 👍'
-        else:
-            output = 'negative 👎'
+        output = 'positive 👍' if predicted_sentiment == 1 else 'negative'
         sentiment=f'Predicted sentiment of "{userinput}" is {output}.'
         st.success(sentiment)
 
